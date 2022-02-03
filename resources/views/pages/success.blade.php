@@ -20,12 +20,12 @@
                                 class="mb-4"
                             />
                             <h2>
-                                Transaction Processed!
+                                Transaksi akan diproses.
                             </h2>
                             <p>
-                                Silahkan tunggu konfirmasi email dari kami dan
+                                Mohon tunggu
                                 <br />
-                                kami akan menginformasikan resi secept mungkin!
+                                Sales akan menghubungi anda kembali.
                             </p>
                             <div>
                                 <a
@@ -38,7 +38,7 @@
                                     class="btn btn-signup w-50 mt-2"
                                     href="{{ route('home') }}"
                                 >
-                                    Go To Shopping
+                                    Home
                                 </a>
                             </div>
                         </div>

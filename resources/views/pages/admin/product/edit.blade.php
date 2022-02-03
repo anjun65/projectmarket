@@ -41,18 +41,6 @@
                                             <input type="text" name="name" class="form-control" value={{ $item->name }} required>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Pemilik Product</label>
-                                            <select name="users_id" class="form-control">
-                                                <option value={{ $item->users_id }} selected> {{ $item->user->name }} </option>
-                                                @foreach ($users as $user)
-                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
 
                                     <div class="col-md-12">
                                         <div class="form-group">

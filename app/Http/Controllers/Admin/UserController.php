@@ -114,14 +114,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $data = $request->all();
+        
+        $password = $request->password;
+        
+        $data['roles'] = $request->roles;
+        
 
         $item = User::findOrFail($id);
 
         if($request->password){
-            $data['password'] = bcrypt($request->password);
+            $data['password'] = bcrypt($password);
         }
         else{
             unset($data['password']);

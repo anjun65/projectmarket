@@ -20,36 +20,11 @@
       <div class="dashboard-content">
         <div class="row">
           <div class="col-12">
-            <form action="">
+            <form action="{{ route('dashboard-settings-redirect','dashboard-setting-account') }}">
+              @csrf
               <div class="card">
                 <div class="card-body">
                   <div class="row mb-2">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="name"
-                          aria-describedby="emailHelp"
-                          name="name"
-                          value="Papel La Casa"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="email">Your Email</label>
-                        <input
-                          type="email"
-                          class="form-control"
-                          id="email"
-                          aria-describedby="emailHelp"
-                          name="email"
-                          value="email@gmail.com"
-                        />
-                      </div>
-                    </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="addressOne">Address 1</label>
@@ -76,7 +51,7 @@
                         />
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <div class="form-group">
                         <label for="province">Province</label>
                         <select
@@ -88,7 +63,7 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <div class="form-group">
                         <label for="city">City</label>
                         <select
@@ -100,7 +75,7 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <div class="form-group">
                         <label for="postalCode">Postal Code</label>
                         <input

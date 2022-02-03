@@ -58,7 +58,6 @@
                     </td>
                     <td style="width: 35%;">
                       <div class="product-title">{{ $cart->product->name }}</div>
-                      <div class="product-subtitle">{{ $cart->product->user->store_name }}</div>
                     </td>
                     <td style="width: 35%;">
                       <div class="product-title">{{ $cart->product->price }}</div>
@@ -182,16 +181,16 @@
               </div>
             </div>
             <div class="row" data-aos="fade-up" data-aos-delay="200">
-              <div class="col-4 col-md-4">
+              {{-- <div class="col-4 col-md-4">
                 <div class="product-title">10%</div>
                 <div class="product-subtitle">Pajak</div>
-              </div>
+              </div> --}}
 
-              <div class="col-4 col-md-4">
+              <div class="col-6 col-md-6">
                 <div class="product-title text-success">Rp. {{ number_format($totalPrice) ?? 0}}</div>
                 <div class="product-subtitle">Total</div>
               </div>
-              <div class="col-4 col-md-4">
+              <div class="col-6 col-md-6">
                 <button
                   type="submit"
                   class="btn btn-success mt-4 px-4 btn-block"

@@ -28,9 +28,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Nama</th>
-                                        <th>Total Produk</th>
-                                        <th>Borrow Date</th>
-                                        <th>Return Date</th>
+                                        <th>Total Harga</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -57,11 +55,9 @@
                 url: '{!! url()->current() !!}'
             },
             columns: [
-                {data: 'id', name:'id'},
+                {data: 'code', name:'code'},
                 {data: 'user.name', name:'user.name'},
-                {data: 'total', name:'total'},
-                {data: 'borrow_date', name:'borrow_date'},
-                {data: 'return_date', name:'return_date'},
+                {data: 'total_price', name:'total_price'},
                 {data: 'transaction_status', name:'transaction_status'},
                 {
                     data: 'action',

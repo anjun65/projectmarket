@@ -8,12 +8,7 @@ use illuminate\Support\Facades\Auth;
 use App\Cart;
 use App\Transaction;
 use App\TransactionDetail;
-
-use Exception;
-
-use Midtrans\Snap;
-use Midtrans\Config;
-use phpDocumentor\Reflection\PseudoTypes\True_;
+use App\Models\AccountAddress;
 
 class CheckoutController extends Controller
 {
@@ -21,6 +16,17 @@ class CheckoutController extends Controller
     {
         $user = Auth::user();
         $user->update($request->except('total_price'));
+
+        $address = AccountAddress::create([
+            'users_id' => Auth::user()->id,
+            'address1' => $request->address_one,
+            'address2' => $request->address_two,
+            'province' => $request->provinces_id,
+            'city' => $request->regencies_id,
+            'zip' => $request->zip_code,
+            'country' => $request->country,
+            'mobile' => $request->phone_number,
+        ]);
 
         //proses checkout
 
@@ -36,6 +42,7 @@ class CheckoutController extends Controller
             'total_price' => (int) $request->total_price,
             'transaction_status' => 'PENDING',
             'code' => $code,
+            'address_id' => $address->id,
         ]);
 
         foreach ($carts as $cart){
@@ -94,10 +101,5 @@ class CheckoutController extends Controller
         //         echo $e->getMessage();
         //     }
             
-    }
-
-    public function callback(Request $request)
-    {
-
     }
 }
