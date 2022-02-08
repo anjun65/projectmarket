@@ -17,6 +17,7 @@ class TransactionDetail extends Model
         'price',
         'resi',
         'code',
+        'total',
     ];
 
     /**

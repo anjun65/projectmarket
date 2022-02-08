@@ -38,7 +38,15 @@ class DetailController extends Controller
             'users_id' => Auth::user()->id,
         ];
 
-        Cart::create($data);
+        $cart = Cart::where('users_id', Auth::user()->id)
+                    ->where('products_id', $id)->first();
+
+        if ($cart){
+           $cart->total = $cart->total + 1 ;
+           $cart->save();
+        } else {
+            Cart::create($data);
+        }
 
         return redirect()->route('cart');
     }

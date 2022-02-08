@@ -35,39 +35,15 @@
                                 @method('PUT')
                                 @csrf
                                 <div class="row">
-                                    {{-- <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>ID</label>
-                                            <input type="text" name="id" class="form-control" value="{{ $item->id }}" disabled>
-                                        </div>
-                                    </div> --}}
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Nama</label>
+                                            <label>Nama Pelanggan</label>
                                             <input type="text" name="name" class="form-control" value="{{ $item->user->name }}" disabled>
                                         </div>
                                     </div>
+                                    
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Total Produk</label>
-                                            <input type="text" name="total_product" class="form-control" value="{{ $item->total }}" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Borrow Date</label>
-                                            <input type="text" name="borrow_date" class="form-control" value="{{ $item->borrow_date }}" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Return Date</label>
-                                            <input type="text" name="return_date" class="form-control" value="{{ $item->return_date }}" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Barang</label>
                                             <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                                 <thead>
                                                     <tr>
@@ -96,14 +72,59 @@
                                             </table>
                                         </div>
                                     </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Address 1</label>
+                                            <input type="text" name="name" class="form-control" value="{{ $item->address->address1 }}" disabled>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Address 2</label>
+                                            <input type="text" name="name" class="form-control" value="{{ $item->address->address2 }}" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Provinsi</label>
+                                            <input type="text" name="name" class="form-control" value="{{ App\Models\Province::find($item->address->province)->name }}" disabled>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Kota</label>
+                                            <input type="text" name="name" class="form-control" value="{{ App\Models\Regency::find($item->address->city)->name }}" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Kode Pos</label>
+                                            <input type="text" name="name" class="form-control" value="{{ $item->address->zip }}" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Nomor HP</label>
+                                            <input type="text" name="name" class="form-control" value="{{ $item->address->mobile }}" disabled>
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Status</label>
                                             <select name="transaction_status" class="form-control">
                                             <option value={{ $item->transaction_status }} selected>{{ $item->transaction_status }}</option>
-                                                <option value="Menunggu Verifikasi">Menunggu Verifikasi</option>
-                                                <option value="Mahasiswa">Mahasiswa</option>
-                                                <option value="Kembali">Kembali</option>
+                                                <option value="Proses Admin">Proses Admin</option>
+                                                <option value="Proses Pengiriman">Proses Pengiriman</option>
+                                                <option value="Terkirim">Terkirim</option>
+                                                <option value="Batal">Batal</option>
                                             </select>
                                         </div>
                                     </div>

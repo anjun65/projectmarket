@@ -11,6 +11,7 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\TransactionController;
 use App\Http\Controllers\API\ProductCategoryController;
+use App\Http\Controllers\API\TotalCartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('checkout', [TransactionController::class, 'checkout']);
 });
 
+Route::post('totalcart', [TotalCartController::class, 'totalCart'])->name('api-total-cart');
 
 Route::get('products', [ProductController::class, 'all']);
 Route::get('categories', [ProductCategoryController::class, 'all']);

@@ -38,13 +38,19 @@
                 <thead>
                   <tr>
                     <th scope="col">Image</th>
-                    <th scope="col">Name &amp; Seller</th>
-                    <th scope="col">Price</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">Total</th>
                     <th scope="col">Menu</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @php $totalPrice = 0 @endphp
+                  @php
+                  
+                  $totalPrice = 0;
+                  $totalProduct = 0;
+
+                  @endphp
                   @foreach ($carts as $cart)
                   <tr>
                     <td style="width: 20%;">
@@ -56,13 +62,20 @@
                       />
                       @endif
                     </td>
-                    <td style="width: 35%;">
+                    <td style="width: 20%;">
                       <div class="product-title">{{ $cart->product->name }}</div>
                     </td>
-                    <td style="width: 35%;">
+                    <td style="width: 20%;">
                       <div class="product-title">{{ $cart->product->price }}</div>
                       <div class="product-subtitle">Rupiah</div>
                     </td>
+
+                    <td style="width: 20%;">
+                      <div class="product-title">
+                        <input id="total_{{ $cart->id }}" cart="{{ $cart->id }}" type="number" class="form-control text-center" value="{{ $cart->total }}" min="1" max="40">
+                      </div>
+                    </td>
+
                     <td style="width: 20%;">
                       <form action="{{ route('cart-delete', $cart->id ) }}" method="POST">
                         @method('DELETE')
@@ -246,6 +259,45 @@
           }
         }
       });
+    </script>
+
+    <script>
+    $(function() {
+        var tId;
+        $('input[type="number"]').change(function(){
+            clearTimeout(tId);
+            var cart_id = $(this).attr("cart");
+            var cart_total = $(this).val();
+
+            tId=setTimeout(function(){                 
+                axios.post('{{ route('api-total-cart') }}', {
+                    id: cart_id,
+                    user_id: {{ Auth::user()->id }},	
+                    total: cart_total,
+                })
+                .then(function (response) {
+                  var total_semua = 0;
+
+                  $('input[type=number]').each(function(){
+                     if ($('input[type="number"]').attr('cart')){
+                        total_semua = total_semua + parseInt($(this).val());
+                     }
+                  });
+
+                  $('#total_product').val(total_semua);
+                })
+                .catch(function (error) {
+                  console.log(error);
+                });
+
+
+
+                
+            },750);
+
+            
+        });
+    });
     </script>
     
 @endpush

@@ -15,6 +15,7 @@ class CheckoutController extends Controller
     public function process(Request $request)
     {
         $user = Auth::user();
+        $new_total_price = 0;
         $user->update($request->except('total_price'));
 
         $address = AccountAddress::create([
@@ -40,24 +41,27 @@ class CheckoutController extends Controller
             'inscurance_price' => 0,
             'shipping_price' => 0,
             'total_price' => (int) $request->total_price,
-            'transaction_status' => 'PENDING',
+            'transaction_status' => 'Proses Admin',
             'code' => $code,
             'address_id' => $address->id,
         ]);
+        
+        $new_total_price = 0;
 
         foreach ($carts as $cart){
             $trx = 'TRX-' . mt_rand(000000,999999);
-            
+            $new_total_price = $new_total_price + ($cart->product->price * $cart->total);
             TransactionDetail::create([
                 'transactions_id' =>$transaction->id,
                 'products_id' => $cart->product->id,
                 'price' => $cart->product->price,
-                'shipping_status' => 'PENDING',
-                'resi' => '',
-                'code' => $trx,
+                'total' => $cart->total,
             ]);
 
         }
+
+
+        $transaction->update(['total_price' => $new_total_price]);
 
         // delete cart data
         Cart::where('users_id', Auth::user()->id)->delete();
