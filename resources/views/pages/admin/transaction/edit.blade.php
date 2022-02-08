@@ -35,6 +35,11 @@
                                 @method('PUT')
                                 @csrf
                                 <div class="row">
+                                    <div class="col-md-12 text-right">
+                                        <a href="{{ route('generate-pdf', $item->id) }}" class="btn btn-primary px-5">
+                                            Print As document
+                                        </a>
+                                    </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Nama Pelanggan</label>

@@ -82,9 +82,10 @@ Route::prefix('admin')->namespace('Admin')->group(static function() {
         Route::resource('category', '\App\Http\Controllers\Admin\CategoryController');
         Route::resource('user', '\App\Http\Controllers\Admin\UserController');
         Route::resource('product', '\App\Http\Controllers\Admin\ProductController');
-        Route::resource('transactions', '\App\Http\Controllers\Admin\TransactionsController');
-        
         Route::resource('product-gallery', '\App\Http\Controllers\Admin\ProductGalleryController');
+
+        Route::resource('transactions', '\App\Http\Controllers\Admin\TransactionsController');
+        Route::get('/transactions/pdf/{id}', [App\Http\Controllers\Admin\TransactionsController::class, 'generatePDF'])->name('generate-pdf');
     });
 });
 

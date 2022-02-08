@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Transaction;
 use App\TransactionDetail;
-
+use PDF;
 
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
@@ -137,6 +137,25 @@ class TransactionsController extends Controller
     public function destroy($id)
     {
         
+    }
+
+    public function generatePDF($id)
+    {
+        $item = Transaction::findorFail($id);
+        $transaction_details = TransactionDetail::with(['transaction.user'])
+                                ->where('transactions_id', $id)->get();
+        
+        view()->share([
+            'item'=> $item,
+            'transaction_details'=> $transaction_details,
+        ]);
+
+        $pdf = PDF::loadView('pages.admin.transaction.pdf', [
+            'item'=> $item,
+            'transaction_details'=> $transaction_details,
+        ])->setPaper('a4');
+
+        return $pdf->stream();
     }
 
     /**
